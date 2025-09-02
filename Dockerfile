@@ -1,5 +1,5 @@
 # ---- Dependencies build stage ----
-FROM --platform=linux/amd64 node:20-alpine AS builder
+FROM node:18-alpine  AS builder
 
 WORKDIR /app
 
@@ -10,7 +10,7 @@ COPY . .
 RUN npm run build
 
 # ---- Production runtime stage ----
-FROM --platform=linux/amd64 node:20-alpine AS runner
+FROM node:20-alpine AS runner
 
 WORKDIR /app
 
