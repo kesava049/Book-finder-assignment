@@ -10,7 +10,7 @@ COPY . .
 RUN npm run build
 
 # ---- Production runtime stage ----
-FROM node:20-alpine AS runner
+FROM node:18-alpine AS runner
 
 WORKDIR /app
 
