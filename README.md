@@ -44,14 +44,27 @@ cd book-finder
 ```
 ### 2. Build the Docker Image
 ```bash
-docker build -t book-finder:latest .
+docker build -t book-finder:local .
 ```
 ### 3. Run the Container
 ```bash
-docker run -p 4000:4000 book-finder:latest
+docker run -p 4000:4000 book-finder:local
 ```
-The app will be available at:
-👉 http://localhost:4000
+App will be running at 👉 http://localhost:4000.
+
+## 🐳 Docker Hub Deployment
+This project is also available on Docker Hub, so you don’t need to build locally.
+
+Pull the Image
+```bash
+docker pull kesav049/book-finder:latest
+```
+Run the Container
+```bash
+docker run -p 4000:4000 kesav049/book-finder:latest
+```
+App will be running at 👉 http://localhost:4000.
+
 
 ### Deployment
 Deployed on Vercel
