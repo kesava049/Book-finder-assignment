@@ -15,14 +15,27 @@ export default function HomePage() {
   }
 
   return (
-    <div className="w-screen h-screen bg-gray-50 p-4 max-w-full mx-auto flex flex-col items-center overflow-auto">
-      <h1 className="text-3xl font-bold text-center mb-8">Book Finder</h1>
+    <div className="min-h-screen w-full bg-gray-50 p-4 flex flex-col items-center">
+      {/* Title */}
+      <h1 className="text-2xl sm:text-3xl font-bold text-center mb-6">
+        Book Finder
+      </h1>
 
-      <SearchBar query={query} setQuery={setQuery} onSearch={handleSearch} loading={loading} />
+      {/* Search Bar */}
+      <SearchBar
+        query={query}
+        setQuery={setQuery}
+        onSearch={handleSearch}
+        loading={loading}
+      />
 
-      {error && <p className="text-center text-red-600 font-semibold mb-6">{error}</p>}
+      {/* Error Message */}
+      {error && (
+        <p className="text-center text-red-600 font-semibold mb-6">{error}</p>
+      )}
 
-      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full max-w-6xl">
+      {/* Results */}
+      <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 w-full max-w-6xl px-2 sm:px-4">
         {books.map((book) => (
           <BookCard
             key={book.key}

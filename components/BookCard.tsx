@@ -18,19 +18,30 @@ export const BookCard: React.FC<BookCardProps> = ({
     : "/no-cover.png";
 
   return (
-    <li className="bg-white rounded-md shadow p-4 flex flex-col items-center text-center">
+    <li className="bg-white rounded-lg shadow p-3 sm:p-4 flex flex-col items-center text-center transition hover:shadow-md">
+      {/* Cover */}
       <img
         src={coverUrl}
         alt={title}
-        className="mb-4 w-32 h-48 object-cover rounded-md"
+        className="mb-3 sm:mb-4 w-24 h-36 sm:w-32 sm:h-48 object-cover rounded-md"
         loading="lazy"
       />
-      <h2 className="text-lg font-semibold mb-1">{title}</h2>
-      <p className="text-gray-700 mb-1">
+
+      {/* Title */}
+      <h2 className="text-base sm:text-lg font-semibold mb-1 line-clamp-2">
+        {title}
+      </h2>
+
+      {/* Authors */}
+      <p className="text-gray-700 text-sm sm:text-base mb-1 line-clamp-1">
         {authors && authors.length > 0 ? authors.join(", ") : "Unknown Author"}
       </p>
+
+      {/* Publish Year */}
       {publishYear && (
-        <p className="text-gray-500 text-sm">First published: {publishYear}</p>
+        <p className="text-gray-500 text-xs sm:text-sm">
+          First published: {publishYear}
+        </p>
       )}
     </li>
   );

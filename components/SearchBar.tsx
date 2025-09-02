@@ -16,21 +16,21 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   return (
     <form
       onSubmit={onSearch}
-      className="flex max-w-md mx-auto mb-8"
+      className="flex flex-col sm:flex-row items-stretch gap-2 mb-6 w-full max-w-lg mx-auto px-4"
       role="search"
       aria-label="Book search form"
     >
       <input
         type="text"
         placeholder="Search by book title..."
-        className="flex-grow p-3 rounded-l-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="flex-grow p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         aria-label="Book title"
       />
       <button
         type="submit"
-        className="bg-blue-600 text-white px-6 rounded-r-md hover:bg-blue-700 transition"
+        className="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition disabled:opacity-60 disabled:cursor-not-allowed w-full sm:w-auto"
         disabled={loading || !query.trim()}
       >
         {loading ? "Searching..." : "Search"}

@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📚 Book Finder
 
-## Getting Started
+A **Next.js application** that allows users (like Alex 👩‍🎓) to search for books using the [Open Library Search API](https://openlibrary.org/search.json).  
+The project is fully **mobile responsive** and supports both **normal local setup** and **Dockerized setup**.
 
-First, run the development server:
+---
 
+## 🚀 Features
+- Search books by title (powered by Open Library API).
+- Responsive UI (mobile-first).
+- Book cards with cover, title, author(s), and publish year.
+- Fast development setup with Next.js.
+- Dockerized for easy deployment.
+
+---
+
+## 🛠️ Getting Started (Normal Setup)
+
+### 1. Clone the Repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git https://github.com/kesava049/Book-finder-assignment.git
+cd book-finder
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install Dependencies
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Run the Development Server
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:4000] with your browser to see the result.
 
-## Learn More
+## 🐳 Running with Docker
+This project is Dockerized for easy setup and deployment.
 
-To learn more about Next.js, take a look at the following resources:
+### 1. Clone the Repository
+```bash
+git https://github.com/kesava049/Book-finder-assignment.git
+cd book-finder
+```
+### 2. Build the Docker Image
+```bash
+docker build -t book-finder:latest .
+```
+### 3. Run the Container
+```bash
+docker run -p 4000:4000 book-finder:latest
+```
+The app will be available at:
+👉 http://localhost:4000
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Deployment
+Deployed on Vercel
+link-> 
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Author
+. Kesavula Reddy Kalepalli
+. GitHub: @kesava049
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+✨ This README gives users **two options**:
+- Run normally with `npm run dev`.  
+- Run inside **Docker** (`docker build` + `docker run`).  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Thank You....

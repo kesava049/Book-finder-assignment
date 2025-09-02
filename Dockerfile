@@ -1,41 +1,28 @@
-# Use Node base image
-FROM node:20-slim AS builder
+# ---- Dependencies build stage ----
+FROM --platform=linux/amd64 node:20-alpine AS builder
 
-# Install build deps (needed for native modules like lightningcss)
-RUN apt-get update && apt-get install -y \
-  libc6 g++ make python3 curl build-essential pkg-config \
-  && rm -rf /var/lib/apt/lists/*
-
-# Create app dir
 WORKDIR /app
 
-# Copy only package.json first (for caching)
-COPY package.json package-lock.json* ./
+COPY package.json package-lock.json ./
+RUN npm ci
 
-# Install deps
-RUN npm install --force
-
-# Rebuild lightningcss for linux
-RUN npm rebuild lightningcss --force
-
-# Copy rest of the project
 COPY . .
-
-# Build Next.js
 RUN npm run build
 
-# ---------- Production Image ----------
-FROM node:20-slim AS runner
+# ---- Production runtime stage ----
+FROM --platform=linux/amd64 node:20-alpine AS runner
 
 WORKDIR /app
 
-ENV NODE_ENV=production
-
-# Copy built files + deps
+COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./
-COPY --from=builder /app/next.config.ts ./
+COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/public ./public
+COPY --from=builder /app/next.config.* ./
+COPY --from=builder /app/app ./app
+COPY --from=builder /app/components ./components
+COPY --from=builder /app/server_actions ./server_actions
 
-EXPOSE 3000
+ENV NODE_ENV=production
+EXPOSE 4000
 CMD ["npm", "start"]
